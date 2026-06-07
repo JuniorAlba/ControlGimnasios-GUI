@@ -26,5 +26,5 @@ Para compilar y ejecutar este proyecto vas a necesitar configurar las librerías
 
 
 Es posible tambien crear un instalador para no tener que compilar el proyecto cada vez que se quiera ejecutar, esto se puede hacer con herramientas como NSIS.
----
 
+---
