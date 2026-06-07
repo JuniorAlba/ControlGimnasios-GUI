@@ -12,23 +12,23 @@
 * ifstream para luego leer los archivos binarios y guardarlos en su respectivo vector.
 * 
 *
-* @param std::string nombre_archivo_couchs Cadena que representa el nombre del archivo binario couchs.
+* @param std::string nombre_archivo_coachs Cadena que representa el nombre del archivo binario coachs.
 *		 std::string nombre_archivo_clientes Cadena que representa el nombre del archivo binario clientes.
 *		 std::string nombre_archivo_suscripciones Cadena que representa el nombre del archivo binario suscripciones.
 		 std::string nombre_archivo_planes Cadena que representa el nombre del archivo binario planes.
 **/ 
-manage::manage(std::string nombre_archivo_couchs, std::string nombre_archivo_clientes, std::string nombre_archivo_suscripciones, std::string nombre_archivo_planes){
+manage::manage(std::string nombre_archivo_coachs, std::string nombre_archivo_clientes, std::string nombre_archivo_suscripciones, std::string nombre_archivo_planes){
 	
-	this->nombre_archivo_couchs = nombre_archivo_couchs;
-	std::ifstream archi_couchs(nombre_archivo_couchs.c_str(),std::ios::binary|std::ios::ate);
-	if(archi_couchs.is_open()){
-		int cantidad_de_couchs = archi_couchs.tellg()/sizeof(registroCouch); 
-		vector_de_couchs.resize(cantidad_de_couchs);
-		archi_couchs.seekg(0,std::ios::beg);
-		for(int i=0;i<cantidad_de_couchs;i++) { 
-			vector_de_couchs[i].leer_en_binario(archi_couchs);
+	this->nombre_archivo_coachs = nombre_archivo_coachs;
+	std::ifstream archi_coachs(nombre_archivo_coachs.c_str(),std::ios::binary|std::ios::ate);
+	if(archi_coachs.is_open()){
+		int cantidad_de_coachs = archi_coachs.tellg()/sizeof(registroCoach); 
+		vector_de_coachs.resize(cantidad_de_coachs);
+		archi_coachs.seekg(0,std::ios::beg);
+		for(int i=0;i<cantidad_de_coachs;i++) { 
+			vector_de_coachs[i].leer_en_binario(archi_coachs);
 		}
-		archi_couchs.close();
+		archi_coachs.close();
 	}
 	
 	this->nombre_archivo_clientes = nombre_archivo_clientes;
@@ -84,12 +84,12 @@ manage::manage(std::string nombre_archivo_couchs, std::string nombre_archivo_cli
 **/ 
 bool manage::guardar() {
 	
-	std::ofstream archi_couchs(nombre_archivo_couchs.c_str(), std::ios::binary|std::ios::trunc);
-	if (!archi_couchs.is_open()) return false;
-	for (unsigned i = 0; i < vector_de_couchs.size(); i++){
-		vector_de_couchs[i].guardar_en_binario(archi_couchs);
+	std::ofstream archi_coachs(nombre_archivo_coachs.c_str(), std::ios::binary|std::ios::trunc);
+	if (!archi_coachs.is_open()) return false;
+	for (unsigned i = 0; i < vector_de_coachs.size(); i++){
+		vector_de_coachs[i].guardar_en_binario(archi_coachs);
 	}
-	archi_couchs.close();
+	archi_coachs.close();
 	
 	std::ofstream archi_clientes(nombre_archivo_clientes.c_str(),std::ios::binary|std::ios::trunc);
 	if (!archi_clientes.is_open())return false;
@@ -118,12 +118,12 @@ bool manage::guardar() {
 
 
 
-/// @brief Implemetaciones de métodos para ver la cantidad de clientes, couchs, planes y suscripciones.
+/// @brief Implemetaciones de métodos para ver la cantidad de clientes, coachs, planes y suscripciones.
 int manage::cantidadCliente() const{
 	return vector_de_clientes.size();
 }
-int manage::cantidadCouch() const{
-	return vector_de_couchs.size();
+int manage::cantidadcoach() const{
+	return vector_de_coachs.size();
 }
 int manage::cantidadPlanes() const{
 	return vector_de_planes.size();
@@ -134,13 +134,13 @@ int manage::cantidadSuscripciones() const{
 
 
 /** 
-* @brief Implemetacion de métodos para agregar clientes, couchs, planes y suscripciones a los vectores.
+* @brief Implemetacion de métodos para agregar clientes, coachs, planes y suscripciones a los vectores.
 */	
 void manage::agregarCliente(const cliente &cl) {
 	vector_de_clientes.push_back(cl);
 }
-void manage::agregarCouch (const couch &ch){
-	vector_de_couchs.push_back(ch);
+void manage::agregarcoach (const coach &ch){
+	vector_de_coachs.push_back(ch);
 }
 void manage::agregarPlan(const plan &p){
 	vector_de_planes.push_back(p);
@@ -150,12 +150,12 @@ void manage::agregarSuscripcion(const suscripcion &sub){
 }
 
 
-/// @brief Implemetacion de métodos para borrar clientes, couchs, planes y suscripciones de los vectores
+/// @brief Implemetacion de métodos para borrar clientes, coachs, planes y suscripciones de los vectores
 void manage::borrarCliente(int pos) {
 	vector_de_clientes.erase(vector_de_clientes.begin()+pos);
 }
-void manage::borrarCouch(int pos) {
-	vector_de_couchs.erase(vector_de_couchs.begin()+pos);
+void manage::borrarcoach(int pos) {
+	vector_de_coachs.erase(vector_de_coachs.begin()+pos);
 }
 void manage::borrarPlan(int pos){
 	vector_de_planes.erase(vector_de_planes.begin()+pos);
@@ -164,27 +164,27 @@ void manage::borrarSuscripcion(int pos){
 	vector_de_suscripciones.erase(vector_de_suscripciones.begin()+pos);
 }
 
-/** @brief Implemetacion de métodos para buscar un couch por su DNI y posicion donde inicia.
-* @param -variable std::string DNI que representa el dni del couch a buscar.
+/** @brief Implemetacion de métodos para buscar un coach por su DNI y posicion donde inicia.
+* @param -variable std::string DNI que representa el dni del coach a buscar.
 * 		 -variable int pos que representa la posicion inicial.
 */
-couch manage::buscarCouchsDNI(std::string DNI, int pos) const{
-	couch ch;
-	for(unsigned i=pos; i<vector_de_couchs.size(); i++){
-		if(vector_de_couchs[i].ver_DNI()==DNI) return vector_de_couchs[i];
+coach manage::buscarcoachsDNI(std::string DNI, int pos) const{
+	coach ch;
+	for(unsigned i=pos; i<vector_de_coachs.size(); i++){
+		if(vector_de_coachs[i].ver_DNI()==DNI) return vector_de_coachs[i];
 	}
 	return ch;
 }
 
-/** @brief Implemetacion de métodos para encontrar la posicion de un couch, por su DNI y posicion donde inicia.
-* @param std::string DNI que representa el dni del couch a buscar.
+/** @brief Implemetacion de métodos para encontrar la posicion de un coach, por su DNI y posicion donde inicia.
+* @param std::string DNI que representa el dni del coach a buscar.
 * 		 int pos que representa la posicion inicial.
 * @return variable entera con la posicion en donde se encuentra o -1 si no esta
 */
-int manage::buscarPosCouchsDNI(std::string DNI, int pos) const{
-	couch ch;
-	for(unsigned i=pos; i<vector_de_couchs.size(); i++){
-		if(vector_de_couchs[i].ver_DNI()==DNI) return i;
+int manage::buscarPoscoachsDNI(std::string DNI, int pos) const{
+	coach ch;
+	for(unsigned i=pos; i<vector_de_coachs.size(); i++){
+		if(vector_de_coachs[i].ver_DNI()==DNI) return i;
 	}
 	return -1;
 }
@@ -242,8 +242,8 @@ suscripcion &manage::obtenerSuscripcion(int pos) {
 	return vector_de_suscripciones[pos];
 }
 
-couch &manage::obtenerCouch(int pos) {
-	return vector_de_couchs[pos];
+coach &manage::obtenercoach(int pos) {
+	return vector_de_coachs[pos];
 }
 
 plan &manage::obtenerPlan(int pos) {
@@ -273,20 +273,20 @@ std::string manage::planesSuscritos(std::string dni_cliente) const{
 }
 /**
 * @brief Implementacion del metodo para buscar los planes en los que se encuentra
-* los couchs responsables.
+* los coachs responsables.
 * 
-* @param  variable std::string dni_couch que representa el dni del mismo.
+* @param  variable std::string dni_coach que representa el dni del mismo.
 * @return cadena std::string con el nombre de todos los planes donde se encuentra registrado.
 */
-std::string manage::planesResponsables(std::string dni_couch) const{
+std::string manage::planesResponsables(std::string dni_coach) const{
 	
 	std::string planes = "";
 	
 	for(int i = 0;i < vector_de_planes.size();i++) {
 		
-		for(int j=0;j<vector_de_planes[i].ver_couchs_plan().size();j++) { 
+		for(int j=0;j<vector_de_planes[i].ver_coachs_plan().size();j++) { 
 			
-			if(vector_de_planes[i].ver_couch_plan(j) == dni_couch){
+			if(vector_de_planes[i].ver_coach_plan(j) == dni_coach){
 				planes += vector_de_planes[i].ver_nombre_plan() + " ";
 				break;
 			}
@@ -328,28 +328,28 @@ int manage::buscarClientesNombre(std::string nomape, int pos) const{
 }
 
 /**
-* @brief Implementacion del metodo para buscar todos los couchs que estan registrado en cierto plan.
+* @brief Implementacion del metodo para buscar todos los coachs que estan registrado en cierto plan.
 */
-std::vector<couch> manage::CouchsInPlan(int pos_plan){
+std::vector<coach> manage::coachsInPlan(int pos_plan){
 	plan plan_actual = this->obtenerPlan(pos_plan);
-	std::vector<std::string> DNI_couchs = plan_actual.ver_couchs_plan();
-	std::vector<couch> aux;
-	for(int i=0; i<DNI_couchs.size() ; i++){
-		couch ch1 = buscarCouchsDNI(DNI_couchs[i]);
+	std::vector<std::string> DNI_coachs = plan_actual.ver_coachs_plan();
+	std::vector<coach> aux;
+	for(int i=0; i<DNI_coachs.size() ; i++){
+		coach ch1 = buscarcoachsDNI(DNI_coachs[i]);
 		aux.push_back(ch1);
 	}
 	return aux;
 }
 
 /**
-* @brief Implementacion del metodo para buscar los couchs que no se encuentran en un plan.
+* @brief Implementacion del metodo para buscar los coachs que no se encuentran en un plan.
 * Este metodo tiene sinergia con el metodo anterior, se hace una copia sobre el vector "v" con los
-* couchs que se encuentran dentro del plan y luego en el vector "v2" se hace la copia de todo el vector de couchs.
-* Luego por medio de dos for va recorriendo y eliminando los couchs que se encuentran en v del vector v2
+* coachs que se encuentran dentro del plan y luego en el vector "v2" se hace la copia de todo el vector de coachs.
+* Luego por medio de dos for va recorriendo y eliminando los coachs que se encuentran en v del vector v2
 */
-std::vector<couch> manage::CouchsOutPlan(int pos_plan){
-	std::vector<couch>v = this->CouchsInPlan(pos_plan);
-	std::vector<couch>v2 = vector_de_couchs;
+std::vector<coach> manage::coachsOutPlan(int pos_plan){
+	std::vector<coach>v = this->coachsInPlan(pos_plan);
+	std::vector<coach>v2 = vector_de_coachs;
 	for(int i=0; i<v.size(); i++){
 		for(int j=0; j<v2.size();j++){
 			if(v[i].ver_DNI()==v2[j].ver_DNI()){
@@ -388,16 +388,16 @@ int manage::buscarClientesEnSub(std::string nomape, int pos){
 
 
 /**
-* @brief Implementacion del metodo para buscar los couch por su nombre y apellido, y pos inicial.
+* @brief Implementacion del metodo para buscar los coach por su nombre y apellido, y pos inicial.
 * 
 */
-int manage::buscarCouchsNombre(std::string nomape, int pos) const{
+int manage::buscarcoachsNombre(std::string nomape, int pos) const{
 	PasarMiniscula(nomape);
 	if(nomape==""){
 		return -1;
 	}
-	for(unsigned i=pos; i<vector_de_couchs.size(); i++){
-		couch ch = vector_de_couchs[i];
+	for(unsigned i=pos; i<vector_de_coachs.size(); i++){
+		coach ch = vector_de_coachs[i];
 		std::string aux=ch.ver_apellido() + ", " + ch.ver_nombre();
 		PasarMiniscula(aux);
 		if(aux.find(nomape,0)!=std::string::npos) return i;
@@ -406,20 +406,20 @@ int manage::buscarCouchsNombre(std::string nomape, int pos) const{
 }
 
 /**
-* @brief Implementacion del metodo para buscar los couch por su nombre y apellido, pero que se encuentran en un plan.
-* Para esto se crea un vector de couch, couchs_plan que almacena los couchs que se encuentran en un plan. Luego se recorre
-* un for y en una variable string auxiliar se almacena el apellido y nombre del couch que se encuentra en la posicion correspondiente a 
+* @brief Implementacion del metodo para buscar los coach por su nombre y apellido, pero que se encuentran en un plan.
+* Para esto se crea un vector de coach, coachs_plan que almacena los coachs que se encuentran en un plan. Luego se recorre
+* un for y en una variable string auxiliar se almacena el apellido y nombre del coach que se encuentra en la posicion correspondiente a 
 * la iteracion del for.Para luego verificar en un if que ese nombre+apellido sea igual al parametro recibido.
 * 
 */
-int manage::buscarCouchsNombre(int pos_plan, std::string nomape, int pos){
-	std::vector<couch> couchs_plan = CouchsInPlan(pos_plan);
+int manage::buscarcoachsNombre(int pos_plan, std::string nomape, int pos){
+	std::vector<coach> coachs_plan = coachsInPlan(pos_plan);
 	PasarMiniscula(nomape);
 	if(nomape==""){
 		return -1;
 	}
-	for(unsigned i=pos; i<couchs_plan.size(); i++){
-		couch ch = couchs_plan[i];
+	for(unsigned i=pos; i<coachs_plan.size(); i++){
+		coach ch = coachs_plan[i];
 		std::string aux=ch.ver_apellido() + ", " + ch.ver_nombre();
 		PasarMiniscula(aux);
 		if(aux.find(nomape,0)!=std::string::npos) return i;
@@ -459,9 +459,9 @@ void manage::OrdenarClientes(CriterioOrdenClientes criterio){
 }
 
 
-void manage::OrdenarCouchs(CriterioOrdenCouchs criterio){
+void manage::Ordenarcoachs(CriterioOrdencoachs criterio){
 
-	auto CriterioCouchsPlanesResponsables = [this](const couch &a, const couch &b)->bool{
+	auto CriteriocoachsPlanesResponsables = [this](const coach &a, const coach &b)->bool{
 		std::string aux1=this->planesResponsables(a.ver_DNI());
 		std::string aux2=this->planesResponsables(b.ver_DNI());
 		PasarMiniscula(aux1);
@@ -470,14 +470,14 @@ void manage::OrdenarCouchs(CriterioOrdenCouchs criterio){
 	};
 	switch(criterio){
 	case ORDEN_APENOMB:
-		sort(vector_de_couchs.begin(), vector_de_couchs.end(), CriterioCouchNombreApellido); break;
+		sort(vector_de_coachs.begin(), vector_de_coachs.end(), CriterioCoachNombreApellido); break;
 	case O_DNI:
-		sort(vector_de_couchs.begin(), vector_de_couchs.end(), CriterioCouchDNI); break;
+		sort(vector_de_coachs.begin(), vector_de_coachs.end(), CriterioCoachDNI); break;
 	case ORDEN_PLANES_RESPONSABLES:
-		std::sort(vector_de_couchs.begin(), vector_de_couchs.end(), CriterioCouchsPlanesResponsables);
+		std::sort(vector_de_coachs.begin(), vector_de_coachs.end(), CriteriocoachsPlanesResponsables);
 		break;
 	case ORDEN_TELEFONO:
-		sort(vector_de_couchs.begin(), vector_de_couchs.end(), CriterioCouchTelefono); break;
+		sort(vector_de_coachs.begin(), vector_de_coachs.end(), CriterioCoachTelefono); break;
 		//lambda 
 	
 	}
@@ -487,9 +487,9 @@ void manage::OrdenarCouchs(CriterioOrdenCouchs criterio){
 }
 
 void manage::OrdenarSuscripciones(CriterioOrdenSuscripcion criterio){
-	auto CriterioNombreApellidoCouch = [this](const suscripcion &a, const suscripcion &b)->bool{
-		couch ch_1=this->buscarCouchsDNI(a.ver_DNI_couch());
-		couch ch_2=this->buscarCouchsDNI(b.ver_DNI_couch());
+	auto CriterioNombreApellidocoach = [this](const suscripcion &a, const suscripcion &b)->bool{
+		coach ch_1=this->buscarcoachsDNI(a.ver_DNI_coach());
+		coach ch_2=this->buscarcoachsDNI(b.ver_DNI_coach());
 		std::string aux1 = ch_1.ver_apellido() + " " + ch_1.ver_nombre();
 		std::string aux2 = ch_2.ver_apellido() + " " + ch_2.ver_nombre();
 		PasarMiniscula(aux1);
@@ -512,9 +512,9 @@ void manage::OrdenarSuscripciones(CriterioOrdenSuscripcion criterio){
 	case O_DNI_CL:
 		sort(vector_de_suscripciones.begin(), vector_de_suscripciones.end(), CriterioSuscripcionDNICliente); break;
 	case O_APENOM_CH:
-		sort(vector_de_suscripciones.begin(), vector_de_suscripciones.end(), CriterioNombreApellidoCouch); break;
+		sort(vector_de_suscripciones.begin(), vector_de_suscripciones.end(), CriterioNombreApellidocoach); break;
 	case O_DNI_CH:
-		sort(vector_de_suscripciones.begin(), vector_de_suscripciones.end(), CriterioSuscripcionDNICouch); break;
+		sort(vector_de_suscripciones.begin(), vector_de_suscripciones.end(), CriterioSuscripcionDNIcoach); break;
 	case O_PLAN:
 		sort(vector_de_suscripciones.begin(), vector_de_suscripciones.end(), CriterioSuscripcionPlan); break;
 	case O_FECH_PAGO:

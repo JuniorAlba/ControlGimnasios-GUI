@@ -1,6 +1,6 @@
 #include "HijaPresentacion.h"
 #include "HijaClientes.h"
-#include "HijaCouchs.h"
+#include "HijaCoachs.h"
 #include "HijaPlan.h"
 #include "HijaSuscripciones.h"
 
@@ -17,8 +17,8 @@ void HijaPresentacion::ClickClientes( wxCommandEvent& event )  {
 }
 
 /// @brief Al hacer click muestro la ventana de Couchs
-void HijaPresentacion::ClickCouchs( wxCommandEvent& event )  {
-	HijaCouchs *nueva_ventana = new HijaCouchs(m_manage,this);
+void HijaPresentacion::ClickCoachs( wxCommandEvent& event )  {
+	HijaCoachs *nueva_ventana = new HijaCoachs(m_manage,this);
 	nueva_ventana->Show();
 }
 

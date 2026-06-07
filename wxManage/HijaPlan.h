@@ -7,7 +7,7 @@ class HijaPlan : public BasePlan {
 	
 private:
 	manage *m_manage;
-	void CargarFila(couch ch, int pos);
+	void CargarFila(coach ch, int pos);
 	void refrescar();
 protected:
 	/// Evento para cuando se cambia el tamanio de la ventana
@@ -28,7 +28,7 @@ protected:
 	/// Evento para hacer click en eliminar
 	void ClickEliminar( wxCommandEvent& event )  override;
 	/// Evento para el click en el boton de agregar
-	void AgregarCouchToPlan( wxCommandEvent& event )  override;
+	void AgregarCoachToPlan( wxCommandEvent& event )  override;
 	/// Evento para hacer click en el precio y poder modificarlo
 	void ClickBotonPrecio( wxCommandEvent& event )  override;
 	/// Evento que permine abrir el desplegable y cambiar de plan

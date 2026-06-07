@@ -49,7 +49,7 @@ class BasePresentacion : public wxFrame
 
 		// Virtual event handlers, override them in your derived class
 		virtual void ClickClientes( wxCommandEvent& event ) { event.Skip(); }
-		virtual void ClickCouchs( wxCommandEvent& event ) { event.Skip(); }
+		virtual void ClickCoachs( wxCommandEvent& event ) { event.Skip(); }
 		virtual void ClickPlanes( wxCommandEvent& event ) { event.Skip(); }
 		virtual void ClickSuscripciones( wxCommandEvent& event ) { event.Skip(); }
 
@@ -101,9 +101,9 @@ class BaseClientes : public wxFrame
 };
 
 ///////////////////////////////////////////////////////////////////////////////
-/// Class BaseCouchs
+/// Class BaseCoachs
 ///////////////////////////////////////////////////////////////////////////////
-class BaseCouchs : public wxFrame
+class BaseCoachs : public wxFrame
 {
 	private:
 
@@ -112,7 +112,7 @@ class BaseCouchs : public wxFrame
 		wxStaticText* m_staticText2;
 		wxTextCtrl* m_buscar;
 		wxButton* m_button7;
-		wxGrid* m_grilla_couchs;
+		wxGrid* m_grilla_coachs;
 		wxButton* m_button33;
 		wxButton* m_button9;
 		wxButton* m_button10;
@@ -124,7 +124,7 @@ class BaseCouchs : public wxFrame
 		virtual void ClickBuscar( wxCommandEvent& event ) { event.Skip(); }
 		virtual void DobleClickFila( wxGridEvent& event ) { event.Skip(); }
 		virtual void ClickColumna( wxGridEvent& event ) { event.Skip(); }
-		virtual void ClickSalirCouchs( wxCommandEvent& event ) { event.Skip(); }
+		virtual void ClickSalirCoachs( wxCommandEvent& event ) { event.Skip(); }
 		virtual void ClickEditar( wxCommandEvent& event ) { event.Skip(); }
 		virtual void ClickEliminar( wxCommandEvent& event ) { event.Skip(); }
 		virtual void ClickAgregar( wxCommandEvent& event ) { event.Skip(); }
@@ -132,9 +132,9 @@ class BaseCouchs : public wxFrame
 
 	public:
 
-		BaseCouchs( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxEmptyString, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 482,455 ), long style = wxDEFAULT_FRAME_STYLE|wxTAB_TRAVERSAL );
+		BaseCoachs( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxEmptyString, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 482,455 ), long style = wxDEFAULT_FRAME_STYLE|wxTAB_TRAVERSAL );
 
-		~BaseCouchs();
+		~BaseCoachs();
 
 };
 
@@ -159,7 +159,7 @@ class BasePlan : public wxFrame
 		wxGrid* m_grilla;
 		wxButton* m_button23;
 		wxButton* m_button22;
-		wxButton* m_agregar_couch;
+		wxButton* m_agregar_coach;
 
 		// Virtual event handlers, override them in your derived class
 		virtual void CambiarTamanio( wxSizeEvent& event ) { event.Skip(); }
@@ -172,7 +172,7 @@ class BasePlan : public wxFrame
 		virtual void ClickColumna( wxGridEvent& event ) { event.Skip(); }
 		virtual void ClickGuardarRutina( wxCommandEvent& event ) { event.Skip(); }
 		virtual void ClickEliminar( wxCommandEvent& event ) { event.Skip(); }
-		virtual void AgregarCouchToPlan( wxCommandEvent& event ) { event.Skip(); }
+		virtual void AgregarCoachToPlan( wxCommandEvent& event ) { event.Skip(); }
 
 
 	public:
@@ -268,9 +268,9 @@ class BaseClientesAgregar : public wxDialog
 };
 
 ///////////////////////////////////////////////////////////////////////////////
-/// Class BaseCouchsAgregar
+/// Class BaseCoachsAgregar
 ///////////////////////////////////////////////////////////////////////////////
-class BaseCouchsAgregar : public wxDialog
+class BaseCoachsAgregar : public wxDialog
 {
 	private:
 
@@ -312,9 +312,9 @@ class BaseCouchsAgregar : public wxDialog
 
 	public:
 
-		BaseCouchsAgregar( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxEmptyString, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 613,494 ), long style = wxDEFAULT_DIALOG_STYLE );
+		BaseCoachsAgregar( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxEmptyString, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 613,494 ), long style = wxDEFAULT_DIALOG_STYLE );
 
-		~BaseCouchsAgregar();
+		~BaseCoachsAgregar();
 
 };
 
@@ -348,9 +348,9 @@ class BasePlanAgregar_Plan : public wxDialog
 };
 
 ///////////////////////////////////////////////////////////////////////////////
-/// Class BasePlanAgregar_Couch
+/// Class BasePlanAgregar_Coach
 ///////////////////////////////////////////////////////////////////////////////
-class BasePlanAgregar_Couch : public wxDialog
+class BasePlanAgregar_Coach : public wxDialog
 {
 	private:
 
@@ -369,9 +369,9 @@ class BasePlanAgregar_Couch : public wxDialog
 
 	public:
 
-		BasePlanAgregar_Couch( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxEmptyString, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 506,362 ), long style = wxDEFAULT_DIALOG_STYLE );
+		BasePlanAgregar_Coach( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxEmptyString, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 506,362 ), long style = wxDEFAULT_DIALOG_STYLE );
 
-		~BasePlanAgregar_Couch();
+		~BasePlanAgregar_Coach();
 
 };
 

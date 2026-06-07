@@ -22,7 +22,7 @@ std::string cliente::validar_datos_cl() const{
 	std::string error=validar_datos();
 	if(contieneLetra(tel_emergencias)) error+="El telefono de emergencias no debe contener letras \n";
 	if(tel_emergencias.size()>25){
-		error+="El telefono de emergencias es demaciado largo \n";
+		error+="El telefono de emergencias es demasiado largo \n";
 	}if(tel_emergencias==""){
 		error+="El telefono de emergencias esta vacio \n";
 	}

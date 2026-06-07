@@ -27,7 +27,7 @@ BasePresentacion::BasePresentacion( wxWindow* parent, wxWindowID id, const wxStr
 
 	bSizer2->Add( m_bitmap1, 0, wxALL, 5 );
 
-	m_bitmap2 = new wxStaticBitmap( this, wxID_ANY, wxBitmap( wxT("Logos/Nuevos logos/Couch.png"), wxBITMAP_TYPE_ANY ), wxDefaultPosition, wxDefaultSize, 0 );
+	m_bitmap2 = new wxStaticBitmap( this, wxID_ANY, wxBitmap( wxT("Logos/Nuevos logos/coach.png"), wxBITMAP_TYPE_ANY ), wxDefaultPosition, wxDefaultSize, 0 );
 	m_bitmap2->SetMinSize( wxSize( 200,200 ) );
 	m_bitmap2->SetMaxSize( wxSize( 200,200 ) );
 
@@ -57,7 +57,7 @@ BasePresentacion::BasePresentacion( wxWindow* parent, wxWindowID id, const wxStr
 
 	bSizer3->Add( m_button2, 1, wxALL, 5 );
 
-	m_button3 = new wxButton( this, wxID_ANY, wxT("Couchs"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_button3 = new wxButton( this, wxID_ANY, wxT("Coachs"), wxDefaultPosition, wxDefaultSize, 0 );
 	m_button3->SetMinSize( wxSize( 200,-1 ) );
 	m_button3->SetMaxSize( wxSize( 200,-1 ) );
 
@@ -86,7 +86,7 @@ BasePresentacion::BasePresentacion( wxWindow* parent, wxWindowID id, const wxStr
 
 	// Connect Events
 	m_button2->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( BasePresentacion::ClickClientes ), NULL, this );
-	m_button3->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( BasePresentacion::ClickCouchs ), NULL, this );
+	m_button3->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( BasePresentacion::ClickCoachs ), NULL, this );
 	m_button4->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( BasePresentacion::ClickPlanes ), NULL, this );
 	m_button5->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( BasePresentacion::ClickSuscripciones ), NULL, this );
 }
@@ -95,7 +95,7 @@ BasePresentacion::~BasePresentacion()
 {
 	// Disconnect Events
 	m_button2->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( BasePresentacion::ClickClientes ), NULL, this );
-	m_button3->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( BasePresentacion::ClickCouchs ), NULL, this );
+	m_button3->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( BasePresentacion::ClickCoachs ), NULL, this );
 	m_button4->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( BasePresentacion::ClickPlanes ), NULL, this );
 	m_button5->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( BasePresentacion::ClickSuscripciones ), NULL, this );
 
@@ -229,7 +229,7 @@ BaseClientes::~BaseClientes()
 
 }
 
-BaseCouchs::BaseCouchs( wxWindow* parent, wxWindowID id, const wxString& title, const wxPoint& pos, const wxSize& size, long style ) : wxFrame( parent, id, title, pos, size, style )
+BaseCoachs::BaseCoachs( wxWindow* parent, wxWindowID id, const wxString& title, const wxPoint& pos, const wxSize& size, long style ) : wxFrame( parent, id, title, pos, size, style )
 {
 	this->SetSizeHints( wxDefaultSize, wxDefaultSize );
 	this->SetBackgroundColour( wxSystemSettings::GetColour( wxSYS_COLOUR_MENU ) );
@@ -237,7 +237,7 @@ BaseCouchs::BaseCouchs( wxWindow* parent, wxWindowID id, const wxString& title, 
 	wxBoxSizer* bSizer8;
 	bSizer8 = new wxBoxSizer( wxVERTICAL );
 
-	m_staticText6 = new wxStaticText( this, wxID_ANY, wxT("COUCHS"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticText6 = new wxStaticText( this, wxID_ANY, wxT("Coachs"), wxDefaultPosition, wxDefaultSize, 0 );
 	m_staticText6->Wrap( -1 );
 	bSizer8->Add( m_staticText6, 0, wxALIGN_CENTER_HORIZONTAL|wxRIGHT|wxLEFT, 5 );
 
@@ -257,39 +257,39 @@ BaseCouchs::BaseCouchs( wxWindow* parent, wxWindowID id, const wxString& title, 
 
 	bSizer8->Add( bSizer9, 0, wxEXPAND, 5 );
 
-	m_grilla_couchs = new wxGrid( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, 0 );
+	m_grilla_coachs = new wxGrid( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, 0 );
 
 	// Grid
-	m_grilla_couchs->CreateGrid( 0, 4 );
-	m_grilla_couchs->EnableEditing( false );
-	m_grilla_couchs->EnableGridLines( true );
-	m_grilla_couchs->EnableDragGridSize( false );
-	m_grilla_couchs->SetMargins( 0, 0 );
+	m_grilla_coachs->CreateGrid( 0, 4 );
+	m_grilla_coachs->EnableEditing( false );
+	m_grilla_coachs->EnableGridLines( true );
+	m_grilla_coachs->EnableDragGridSize( false );
+	m_grilla_coachs->SetMargins( 0, 0 );
 
 	// Columns
-	m_grilla_couchs->SetColSize( 0, 152 );
-	m_grilla_couchs->SetColSize( 1, 79 );
-	m_grilla_couchs->SetColSize( 2, 104 );
-	m_grilla_couchs->SetColSize( 3, 128 );
-	m_grilla_couchs->EnableDragColMove( false );
-	m_grilla_couchs->EnableDragColSize( true );
-	m_grilla_couchs->SetColLabelValue( 0, wxT("Nombre y Apellido") );
-	m_grilla_couchs->SetColLabelValue( 1, wxT("DNI") );
-	m_grilla_couchs->SetColLabelValue( 2, wxT("Planes (resp)") );
-	m_grilla_couchs->SetColLabelValue( 3, wxT("Telefono") );
-	m_grilla_couchs->SetColLabelAlignment( wxALIGN_CENTER, wxALIGN_CENTER );
+	m_grilla_coachs->SetColSize( 0, 152 );
+	m_grilla_coachs->SetColSize( 1, 79 );
+	m_grilla_coachs->SetColSize( 2, 104 );
+	m_grilla_coachs->SetColSize( 3, 128 );
+	m_grilla_coachs->EnableDragColMove( false );
+	m_grilla_coachs->EnableDragColSize( true );
+	m_grilla_coachs->SetColLabelValue( 0, wxT("Nombre y Apellido") );
+	m_grilla_coachs->SetColLabelValue( 1, wxT("DNI") );
+	m_grilla_coachs->SetColLabelValue( 2, wxT("Planes (resp)") );
+	m_grilla_coachs->SetColLabelValue( 3, wxT("Telefono") );
+	m_grilla_coachs->SetColLabelAlignment( wxALIGN_CENTER, wxALIGN_CENTER );
 
 	// Rows
-	m_grilla_couchs->EnableDragRowSize( true );
-	m_grilla_couchs->SetRowLabelSize( 0 );
-	m_grilla_couchs->SetRowLabelAlignment( wxALIGN_CENTER, wxALIGN_CENTER );
+	m_grilla_coachs->EnableDragRowSize( true );
+	m_grilla_coachs->SetRowLabelSize( 0 );
+	m_grilla_coachs->SetRowLabelAlignment( wxALIGN_CENTER, wxALIGN_CENTER );
 
 	// Label Appearance
-	m_grilla_couchs->SetLabelBackgroundColour( wxColour( 151, 210, 187 ) );
+	m_grilla_coachs->SetLabelBackgroundColour( wxColour( 151, 210, 187 ) );
 
 	// Cell Defaults
-	m_grilla_couchs->SetDefaultCellAlignment( wxALIGN_CENTER, wxALIGN_TOP );
-	bSizer8->Add( m_grilla_couchs, 1, wxALL|wxEXPAND|wxTOP, 5 );
+	m_grilla_coachs->SetDefaultCellAlignment( wxALIGN_CENTER, wxALIGN_TOP );
+	bSizer8->Add( m_grilla_coachs, 1, wxALL|wxEXPAND|wxTOP, 5 );
 
 	wxBoxSizer* bSizer10;
 	bSizer10 = new wxBoxSizer( wxHORIZONTAL );
@@ -328,29 +328,29 @@ BaseCouchs::BaseCouchs( wxWindow* parent, wxWindowID id, const wxString& title, 
 	this->Centre( wxBOTH );
 
 	// Connect Events
-	this->Connect( wxEVT_SIZE, wxSizeEventHandler( BaseCouchs::ClickTamanio ) );
-	m_buscar->Connect( wxEVT_COMMAND_TEXT_ENTER, wxCommandEventHandler( BaseCouchs::EnterBuscar ), NULL, this );
-	m_button7->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( BaseCouchs::ClickBuscar ), NULL, this );
-	m_grilla_couchs->Connect( wxEVT_GRID_CELL_LEFT_DCLICK, wxGridEventHandler( BaseCouchs::DobleClickFila ), NULL, this );
-	m_grilla_couchs->Connect( wxEVT_GRID_LABEL_LEFT_CLICK, wxGridEventHandler( BaseCouchs::ClickColumna ), NULL, this );
-	m_button33->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( BaseCouchs::ClickSalirCouchs ), NULL, this );
-	m_button9->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( BaseCouchs::ClickEditar ), NULL, this );
-	m_button10->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( BaseCouchs::ClickEliminar ), NULL, this );
-	m_button8->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( BaseCouchs::ClickAgregar ), NULL, this );
+	this->Connect( wxEVT_SIZE, wxSizeEventHandler( BaseCoachs::ClickTamanio ) );
+	m_buscar->Connect( wxEVT_COMMAND_TEXT_ENTER, wxCommandEventHandler( BaseCoachs::EnterBuscar ), NULL, this );
+	m_button7->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( BaseCoachs::ClickBuscar ), NULL, this );
+	m_grilla_coachs->Connect( wxEVT_GRID_CELL_LEFT_DCLICK, wxGridEventHandler( BaseCoachs::DobleClickFila ), NULL, this );
+	m_grilla_coachs->Connect( wxEVT_GRID_LABEL_LEFT_CLICK, wxGridEventHandler( BaseCoachs::ClickColumna ), NULL, this );
+	m_button33->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( BaseCoachs::ClickSalirCoachs ), NULL, this );
+	m_button9->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( BaseCoachs::ClickEditar ), NULL, this );
+	m_button10->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( BaseCoachs::ClickEliminar ), NULL, this );
+	m_button8->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( BaseCoachs::ClickAgregar ), NULL, this );
 }
 
-BaseCouchs::~BaseCouchs()
+BaseCoachs::~BaseCoachs()
 {
 	// Disconnect Events
-	this->Disconnect( wxEVT_SIZE, wxSizeEventHandler( BaseCouchs::ClickTamanio ) );
-	m_buscar->Disconnect( wxEVT_COMMAND_TEXT_ENTER, wxCommandEventHandler( BaseCouchs::EnterBuscar ), NULL, this );
-	m_button7->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( BaseCouchs::ClickBuscar ), NULL, this );
-	m_grilla_couchs->Disconnect( wxEVT_GRID_CELL_LEFT_DCLICK, wxGridEventHandler( BaseCouchs::DobleClickFila ), NULL, this );
-	m_grilla_couchs->Disconnect( wxEVT_GRID_LABEL_LEFT_CLICK, wxGridEventHandler( BaseCouchs::ClickColumna ), NULL, this );
-	m_button33->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( BaseCouchs::ClickSalirCouchs ), NULL, this );
-	m_button9->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( BaseCouchs::ClickEditar ), NULL, this );
-	m_button10->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( BaseCouchs::ClickEliminar ), NULL, this );
-	m_button8->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( BaseCouchs::ClickAgregar ), NULL, this );
+	this->Disconnect( wxEVT_SIZE, wxSizeEventHandler( BaseCoachs::ClickTamanio ) );
+	m_buscar->Disconnect( wxEVT_COMMAND_TEXT_ENTER, wxCommandEventHandler( BaseCoachs::EnterBuscar ), NULL, this );
+	m_button7->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( BaseCoachs::ClickBuscar ), NULL, this );
+	m_grilla_coachs->Disconnect( wxEVT_GRID_CELL_LEFT_DCLICK, wxGridEventHandler( BaseCoachs::DobleClickFila ), NULL, this );
+	m_grilla_coachs->Disconnect( wxEVT_GRID_LABEL_LEFT_CLICK, wxGridEventHandler( BaseCoachs::ClickColumna ), NULL, this );
+	m_button33->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( BaseCoachs::ClickSalirCoachs ), NULL, this );
+	m_button9->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( BaseCoachs::ClickEditar ), NULL, this );
+	m_button10->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( BaseCoachs::ClickEliminar ), NULL, this );
+	m_button8->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( BaseCoachs::ClickAgregar ), NULL, this );
 
 }
 
@@ -453,7 +453,7 @@ BasePlan::BasePlan( wxWindow* parent, wxWindowID id, const wxString& title, cons
 	wxBoxSizer* bSizer43;
 	bSizer43 = new wxBoxSizer( wxVERTICAL );
 
-	m_staticText35 = new wxStaticText( this, wxID_ANY, wxT("Couchs registrados"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticText35 = new wxStaticText( this, wxID_ANY, wxT("Coachs registrados"), wxDefaultPosition, wxDefaultSize, 0 );
 	m_staticText35->Wrap( -1 );
 	m_staticText35->SetForegroundColour( wxColour( 0, 0, 0 ) );
 
@@ -534,8 +534,8 @@ BasePlan::BasePlan( wxWindow* parent, wxWindowID id, const wxString& title, cons
 	m_button22 = new wxButton( this, wxID_ANY, wxT("Eliminar"), wxDefaultPosition, wxDefaultSize, 0 );
 	bSizer49->Add( m_button22, 0, wxALL, 5 );
 
-	m_agregar_couch = new wxButton( this, wxID_ANY, wxT("Agregar"), wxDefaultPosition, wxDefaultSize, 0 );
-	bSizer49->Add( m_agregar_couch, 0, wxALL, 5 );
+	m_agregar_coach = new wxButton( this, wxID_ANY, wxT("Agregar"), wxDefaultPosition, wxDefaultSize, 0 );
+	bSizer49->Add( m_agregar_coach, 0, wxALL, 5 );
 
 
 	bSizer48->Add( bSizer49, 0, 0, 5 );
@@ -560,7 +560,7 @@ BasePlan::BasePlan( wxWindow* parent, wxWindowID id, const wxString& title, cons
 	m_grilla->Connect( wxEVT_GRID_LABEL_LEFT_CLICK, wxGridEventHandler( BasePlan::ClickColumna ), NULL, this );
 	m_button23->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( BasePlan::ClickGuardarRutina ), NULL, this );
 	m_button22->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( BasePlan::ClickEliminar ), NULL, this );
-	m_agregar_couch->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( BasePlan::AgregarCouchToPlan ), NULL, this );
+	m_agregar_coach->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( BasePlan::AgregarCoachToPlan ), NULL, this );
 }
 
 BasePlan::~BasePlan()
@@ -576,7 +576,7 @@ BasePlan::~BasePlan()
 	m_grilla->Disconnect( wxEVT_GRID_LABEL_LEFT_CLICK, wxGridEventHandler( BasePlan::ClickColumna ), NULL, this );
 	m_button23->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( BasePlan::ClickGuardarRutina ), NULL, this );
 	m_button22->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( BasePlan::ClickEliminar ), NULL, this );
-	m_agregar_couch->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( BasePlan::AgregarCouchToPlan ), NULL, this );
+	m_agregar_coach->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( BasePlan::AgregarCoachToPlan ), NULL, this );
 
 }
 
@@ -888,14 +888,14 @@ BaseClientesAgregar::~BaseClientesAgregar()
 
 }
 
-BaseCouchsAgregar::BaseCouchsAgregar( wxWindow* parent, wxWindowID id, const wxString& title, const wxPoint& pos, const wxSize& size, long style ) : wxDialog( parent, id, title, pos, size, style )
+BaseCoachsAgregar::BaseCoachsAgregar( wxWindow* parent, wxWindowID id, const wxString& title, const wxPoint& pos, const wxSize& size, long style ) : wxDialog( parent, id, title, pos, size, style )
 {
 	this->SetSizeHints( wxDefaultSize, wxDefaultSize );
 
 	wxBoxSizer* bSizer21;
 	bSizer21 = new wxBoxSizer( wxVERTICAL );
 
-	m_staticText12 = new wxStaticText( this, wxID_ANY, wxT("REGISTRO COUCH"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticText12 = new wxStaticText( this, wxID_ANY, wxT("REGISTRO coach"), wxDefaultPosition, wxDefaultSize, 0 );
 	m_staticText12->Wrap( -1 );
 	bSizer21->Add( m_staticText12, 0, wxALIGN_CENTER_HORIZONTAL|wxALL, 5 );
 
@@ -1075,15 +1075,15 @@ BaseCouchsAgregar::BaseCouchsAgregar( wxWindow* parent, wxWindowID id, const wxS
 	this->Centre( wxBOTH );
 
 	// Connect Events
-	m_button24->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( BaseCouchsAgregar::ClickCancelarRegistro ), NULL, this );
-	m_button23->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( BaseCouchsAgregar::ClickAceptarRegistro ), NULL, this );
+	m_button24->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( BaseCoachsAgregar::ClickCancelarRegistro ), NULL, this );
+	m_button23->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( BaseCoachsAgregar::ClickAceptarRegistro ), NULL, this );
 }
 
-BaseCouchsAgregar::~BaseCouchsAgregar()
+BaseCoachsAgregar::~BaseCoachsAgregar()
 {
 	// Disconnect Events
-	m_button24->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( BaseCouchsAgregar::ClickCancelarRegistro ), NULL, this );
-	m_button23->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( BaseCouchsAgregar::ClickAceptarRegistro ), NULL, this );
+	m_button24->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( BaseCoachsAgregar::ClickCancelarRegistro ), NULL, this );
+	m_button23->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( BaseCoachsAgregar::ClickAceptarRegistro ), NULL, this );
 
 }
 
@@ -1162,14 +1162,14 @@ BasePlanAgregar_Plan::~BasePlanAgregar_Plan()
 
 }
 
-BasePlanAgregar_Couch::BasePlanAgregar_Couch( wxWindow* parent, wxWindowID id, const wxString& title, const wxPoint& pos, const wxSize& size, long style ) : wxDialog( parent, id, title, pos, size, style )
+BasePlanAgregar_Coach::BasePlanAgregar_Coach( wxWindow* parent, wxWindowID id, const wxString& title, const wxPoint& pos, const wxSize& size, long style ) : wxDialog( parent, id, title, pos, size, style )
 {
 	this->SetSizeHints( wxDefaultSize, wxDefaultSize );
 
 	wxBoxSizer* bSizer8;
 	bSizer8 = new wxBoxSizer( wxVERTICAL );
 
-	m_staticText6 = new wxStaticText( this, wxID_ANY, wxT("COUCHS"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticText6 = new wxStaticText( this, wxID_ANY, wxT("Coachs"), wxDefaultPosition, wxDefaultSize, 0 );
 	m_staticText6->Wrap( -1 );
 	bSizer8->Add( m_staticText6, 0, wxALIGN_CENTER_HORIZONTAL|wxRIGHT|wxLEFT, 5 );
 
@@ -1231,19 +1231,19 @@ BasePlanAgregar_Couch::BasePlanAgregar_Couch( wxWindow* parent, wxWindowID id, c
 	this->Centre( wxBOTH );
 
 	// Connect Events
-	m_grilla->Connect( wxEVT_GRID_CELL_LEFT_DCLICK, wxGridEventHandler( BasePlanAgregar_Couch::DobleClickFila ), NULL, this );
-	m_grilla->Connect( wxEVT_GRID_LABEL_LEFT_CLICK, wxGridEventHandler( BasePlanAgregar_Couch::ClickColumna ), NULL, this );
-	m_button10->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( BasePlanAgregar_Couch::ClickCancelar ), NULL, this );
-	m_button8->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( BasePlanAgregar_Couch::ClickAgregar ), NULL, this );
+	m_grilla->Connect( wxEVT_GRID_CELL_LEFT_DCLICK, wxGridEventHandler( BasePlanAgregar_Coach::DobleClickFila ), NULL, this );
+	m_grilla->Connect( wxEVT_GRID_LABEL_LEFT_CLICK, wxGridEventHandler( BasePlanAgregar_Coach::ClickColumna ), NULL, this );
+	m_button10->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( BasePlanAgregar_Coach::ClickCancelar ), NULL, this );
+	m_button8->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( BasePlanAgregar_Coach::ClickAgregar ), NULL, this );
 }
 
-BasePlanAgregar_Couch::~BasePlanAgregar_Couch()
+BasePlanAgregar_Coach::~BasePlanAgregar_Coach()
 {
 	// Disconnect Events
-	m_grilla->Disconnect( wxEVT_GRID_CELL_LEFT_DCLICK, wxGridEventHandler( BasePlanAgregar_Couch::DobleClickFila ), NULL, this );
-	m_grilla->Disconnect( wxEVT_GRID_LABEL_LEFT_CLICK, wxGridEventHandler( BasePlanAgregar_Couch::ClickColumna ), NULL, this );
-	m_button10->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( BasePlanAgregar_Couch::ClickCancelar ), NULL, this );
-	m_button8->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( BasePlanAgregar_Couch::ClickAgregar ), NULL, this );
+	m_grilla->Disconnect( wxEVT_GRID_CELL_LEFT_DCLICK, wxGridEventHandler( BasePlanAgregar_Coach::DobleClickFila ), NULL, this );
+	m_grilla->Disconnect( wxEVT_GRID_LABEL_LEFT_CLICK, wxGridEventHandler( BasePlanAgregar_Coach::ClickColumna ), NULL, this );
+	m_button10->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( BasePlanAgregar_Coach::ClickCancelar ), NULL, this );
+	m_button8->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( BasePlanAgregar_Coach::ClickAgregar ), NULL, this );
 
 }
 

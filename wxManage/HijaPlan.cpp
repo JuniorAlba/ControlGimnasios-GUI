@@ -1,10 +1,10 @@
 #include "HijaPlan.h"
 #include "string_conv.h"
 #include <string>
-#include "Couch.h"
+#include "coach.h"
 #include <vector>
 #include "HijaPlanPrecio.h"
-#include "HijaPlanAgregar_Couch.h"
+#include "HijaPlanAgregar_Coach.h"
 #include <fstream>
 #include "HijaPlanAgregar_Plan.h"
 #include <wx/msgdlg.h>
@@ -12,7 +12,7 @@
 
 
 /**
-* Inicializxa la ventana, carga el icono y refresca la grilla de couchs y se indica el modo 
+* Inicializxa la ventana, carga el icono y refresca la grilla de coachs y se indica el modo 
 * de seleccion de m_grilla como: wxGridSelectRows, esto quiere decir que al hacer clic en una celda,
 * se seleccionara toda la fila a la que pertenece esa celda.
 */
@@ -23,14 +23,14 @@ HijaPlan::HijaPlan(manage *aux, wxWindow *parent) : BasePlan(parent), m_manage(a
 	refrescar();
 	m_grilla->SetSelectionMode(wxGrid::wxGridSelectRows);
 }
-/// Metodo que carga los datos de los couchs de dicho plan en la grilla
-void HijaPlan::CargarFila(couch ch, int pos){
+/// Metodo que carga los datos de los coachs de dicho plan en la grilla
+void HijaPlan::CargarFila(coach ch, int pos){
 	m_grilla->SetCellValue(pos,0,std_to_wx(ch.ver_apellido()+ ", " + ch.ver_nombre()));
 	m_grilla->SetCellValue(pos,1,std_to_wx(ch.ver_DNI()));
 }
 
 /// Al hacer click en el desplegable de planes llama a la funcion refrescar para que al seleccionar el plan
-/// cambie la grilla de los couchs.
+/// cambie la grilla de los coachs.
 void HijaPlan::CambioSeleccion( wxCommandEvent& event )  {
 	refrescar();
 }
@@ -49,12 +49,12 @@ void HijaPlan::ClickBotonPrecio( wxCommandEvent& event )  {
 /**
 * Metodo que se inicia al hacer click en el boton de Agregar.
 * Este metodo al invocarse almacena el plan que se haya elegido y luego inicializa la ventana 
-* HijaPlanAgregar_Couch y le pasa el plan elegido y si recibe algun cambio es decir, si recibe
-* showmodal=1 refresca la grilla con los couchs actuales y nuevo que se agrego.
+* HijaPlanAgregar_Coach y le pasa el plan elegido y si recibe algun cambio es decir, si recibe
+* showmodal=1 refresca la grilla con los coachs actuales y nuevo que se agrego.
 */
-void HijaPlan::AgregarCouchToPlan( wxCommandEvent& event )  {
+void HijaPlan::AgregarCoachToPlan( wxCommandEvent& event )  {
 	int pos_plan = m_desplegable->GetSelection();
-	HijaPlanAgregar_Couch nueva_ventana(m_manage, pos_plan ,this);
+	HijaPlanAgregar_Coach nueva_ventana(m_manage, pos_plan ,this);
 	if(nueva_ventana.ShowModal()==1){
 		refrescar();
 	}
@@ -62,15 +62,15 @@ void HijaPlan::AgregarCouchToPlan( wxCommandEvent& event )  {
 
 void HijaPlan::ClickEliminar( wxCommandEvent& event )  {
 	int fila_actual = m_grilla->GetGridCursorRow();
-	std::string dni_couch = wx_to_std(m_grilla->GetCellValue(fila_actual,1));
+	std::string dni_coach = wx_to_std(m_grilla->GetCellValue(fila_actual,1));
 	int pos_plan = m_desplegable->GetSelection();
-	m_manage->obtenerPlan(pos_plan).eliminar_couch(dni_couch);
+	m_manage->obtenerPlan(pos_plan).eliminar_coach(dni_coach);
 	m_manage->guardar();
 	refrescar();
 }
 
 /** Implementacion del metodo refrescar, este lo utilizaremos mucho para actualizar el desplegable para seleccionar el plan,
-* las grillas de los couchs que pertenecen al mismo y ademas de la rutina base y su precio.
+* las grillas de los coachs que pertenecen al mismo y ademas de la rutina base y su precio.
 */
 void HijaPlan::refrescar(){
 	// Actualizamos desplegable
@@ -117,14 +117,14 @@ void HijaPlan::refrescar(){
 	
 	//Actualizamos la grilla que se muestra
 	
-	std::vector<couch> couchs_grilla;
-	couchs_grilla = m_manage->CouchsInPlan(pos_plan);
+	std::vector<coach> coachs_grilla;
+	coachs_grilla = m_manage->coachsInPlan(pos_plan);
 	if(m_grilla->GetNumberRows()!=0){
 		m_grilla->DeleteRows(0,m_grilla->GetNumberRows());
 	}
-	m_grilla->AppendRows(couchs_grilla.size());
-	for(int i=0;i<couchs_grilla.size();i++){
-		CargarFila(couchs_grilla[i],i);
+	m_grilla->AppendRows(coachs_grilla.size());
+	for(int i=0;i<coachs_grilla.size();i++){
+		CargarFila(coachs_grilla[i],i);
 	}
 	
 	// Muestro el precio del plan en el boton m_precio
@@ -186,7 +186,7 @@ void HijaPlan::EnterBuscar( wxCommandEvent& event )  {
 }
 
 /**
-* Implementacion del metodo clickbuscar que permite encontrar los couchs registrados en el plan seleccionado
+* Implementacion del metodo clickbuscar que permite encontrar los coachs registrados en el plan seleccionado
 * a partir de una grilla seleccionada si asi lo desee el usuario
 */
 void HijaPlan::ClickBuscar( wxCommandEvent& event )  {
@@ -196,11 +196,11 @@ void HijaPlan::ClickBuscar( wxCommandEvent& event )  {
 		wxMessageBox("Usted a seleccionado demasiadas filas, seleccione 1 o menos porfavor.\nTenga en cuenta que se empezara a buscar apartir de esa fila en adelante, en caso de tener seleccionada la ultima fila se comenzara desde el inicio de la grilla.");	
 		return;
 	}
-	//guardo el nombre-apellido del couch y el plan que se haya seleccionado en el desplegable...
+	//guardo el nombre-apellido del coach y el plan que se haya seleccionado en el desplegable...
 	std::string nomape = wx_to_std(m_buscar->GetValue());
 	int pos_plan = m_desplegable->GetSelection();
-	int encontrado = m_manage->buscarCouchsNombre(pos_plan, nomape, fila_pos+1 );
-	if(encontrado==-1) encontrado = m_manage->buscarCouchsNombre(pos_plan,nomape,0);
+	int encontrado = m_manage->buscarcoachsNombre(pos_plan, nomape, fila_pos+1 );
+	if(encontrado==-1) encontrado = m_manage->buscarcoachsNombre(pos_plan,nomape,0);
 	if(encontrado==-1) wxMessageBox("No se encontraron coincidencias");
 	else{
 		//si lo encuentra le muestro donde esta.

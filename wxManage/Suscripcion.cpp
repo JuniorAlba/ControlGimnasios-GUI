@@ -15,13 +15,13 @@
 * los datos de la rutina del plan base
 *
 * @param std::string p_subscrito Cadena que representa el plan susbcrito
-*		 std::string dni_couch Cadena que representa el dni del coach responsable
+*		 std::string dni_coach Cadena que representa el dni del coach responsable
 *		 std::string dni_cliente Cadena que representa el dni del cliente
 **/ 
-suscripcion::suscripcion(std::string p_subscrito, std::string dni_couch, std::string dni_cliente){
+suscripcion::suscripcion(std::string p_subscrito, std::string dni_coach, std::string dni_cliente){
 	this->p_subscrito = p_subscrito;
 	this->dni_cliente = dni_cliente;
-	this->dni_couch = dni_couch;
+	this->dni_coach = dni_coach;
 	fecha_pago = FechaHoy();
 	nombre_rutina = FechaArchivo(fecha_pago)+"_"+dni_cliente+"_"+p_subscrito+".txt";
 	std::ofstream rutina("RutinasClientes/"+nombre_rutina);
@@ -56,10 +56,10 @@ int suscripcion::dias_faltantes() const{
 
 /**
 * @brief Metodo para obtener el dni del coach
-* @return std::string dni_couch Retorna el dni del coach 
+* @return std::string dni_coach Retorna el dni del coach 
 */
-std::string suscripcion::ver_DNI_couch() const{
-	return dni_couch;
+std::string suscripcion::ver_DNI_coach() const{
+	return dni_coach;
 }
 
 /**
@@ -100,7 +100,7 @@ void suscripcion::leer_en_binario(std::ifstream &archivo){
 	archivo.read(reinterpret_cast<char*>(&registro), sizeof(registroSuscripcion));
 	this->nombre_rutina = registro.nombre_rutina;
 	this->dni_cliente = registro.id_cliente;
-	this->dni_couch = registro.id_couch;
+	this->dni_coach = registro.id_coach;
 	this->p_subscrito = registro.id_plan;
 	this->fecha_pago = registro.fecha_pago;
 }
@@ -118,7 +118,7 @@ void suscripcion::leer_en_binario(std::ifstream &archivo){
 void suscripcion::guardar_en_binario(std::ofstream &archivo){
 	registroSuscripcion registro;
 	strcpy(registro.nombre_rutina, this->nombre_rutina.c_str());
-	strcpy(registro.id_couch, this->dni_couch.c_str());
+	strcpy(registro.id_coach, this->dni_coach.c_str());
 	strcpy(registro.id_cliente, this->dni_cliente.c_str());
 	strcpy(registro.id_plan, this->p_subscrito.c_str());
 	registro.fecha_pago = this->fecha_pago;
@@ -162,8 +162,8 @@ bool CriterioSuscripcionFecha(suscripcion sub1, suscripcion sub2){
 * @return 'true' si el DNI del coach de sub1 es menor al DNI del coach de sub2,
 * 		  'false' en caso contrario
 */	
-bool CriterioSuscripcionDNICouch(suscripcion sub1, suscripcion sub2){
-	return sub1.ver_DNI_couch()<sub2.ver_DNI_couch();
+bool CriterioSuscripcionDNIcoach(suscripcion sub1, suscripcion sub2){
+	return sub1.ver_DNI_coach()<sub2.ver_DNI_coach();
 }
 /**
 * @brief Funcion para comparar dos suscripciones 'sub1' y 'sub2' por los DNI

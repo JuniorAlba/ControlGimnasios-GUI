@@ -3,7 +3,7 @@
 #include "HijaPresentacion.h"
 
 IMPLEMENT_APP(Application)
-Application::Application():m_manage("couchs.dat","clientes.dat","suscripciones.dat","planes.dat"){
+Application::Application():m_manage("coachs.dat","clientes.dat","suscripciones.dat","planes.dat"){
 	
 }
 

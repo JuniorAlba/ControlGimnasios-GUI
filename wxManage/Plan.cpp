@@ -15,7 +15,7 @@ plan::plan(std::string nombre, int precio){
 
 /**
 * Implementacion del metodo que valida los datos ingresados.
-* El vector de couchs no es necesario pq ya posee un metodo propio
+* El vector de coachs no es necesario pq ya posee un metodo propio
 * la clase cliente.
 **/
 std::string plan::validar_datos() const{
@@ -30,8 +30,8 @@ std::string plan::validar_datos() const{
 	if(precio<0){
 		errores+="El precio no puede ser negativo \n";
 	}
-	if(p_couchs.size()==0){
-		errores+="Falta un couch responsable del plan \n";
+	if(p_coachs.size()==0){
+		errores+="Falta un coach responsable del plan \n";
 	}
 	return errores;
 }
@@ -46,12 +46,12 @@ int plan::ver_precio_plan() const{
 	return precio;
 }
 
-std::string plan::ver_couch_plan(int pos) const{ 
-	return p_couchs[pos];
+std::string plan::ver_coach_plan(int pos) const{ 
+	return p_coachs[pos];
 }
 
-std::vector<std::string> plan::ver_couchs_plan() const{
-	return p_couchs;
+std::vector<std::string> plan::ver_coachs_plan() const{
+	return p_coachs;
 }
 
 std::string plan::ver_nombre_plan() const{
@@ -71,12 +71,12 @@ void plan::leer_en_binario(std::ifstream &archivo){
 	this->nombre_rutina_base = registro.rutina_base;
 	this->precio = registro.precio;
 	
-	p_couchs.erase(p_couchs.begin(), p_couchs.end()); // asegurarse de que el vector esté vacío antes de
+	p_coachs.erase(p_coachs.begin(), p_coachs.end()); // asegurarse de que el vector esté vacío antes de
 	//agregar elementos
 	
-	for (int i = 0; i < registro.num_couchs; ++i) {
-		std::string id_couch(registro.couchs[i],8);
-		p_couchs.push_back(id_couch);
+	for (int i = 0; i < registro.num_coachs; ++i) {
+		std::string id_coach(registro.coachs[i],8);
+		p_coachs.push_back(id_coach);
 	}
 	
 }
@@ -88,33 +88,33 @@ void plan::guardar_en_binario(std::ofstream &archivo){
 	strcpy(registro.rutina_base, this->nombre_rutina_base.c_str());
 	registro.precio = this->precio;
 	
-	registro.num_couchs = p_couchs.size();
+	registro.num_coachs = p_coachs.size();
 	
 	
-	for (int i = 0; i < p_couchs.size(); ++i) {
-		std::strcpy(registro.couchs[i], p_couchs[i].c_str());
+	for (int i = 0; i < p_coachs.size(); ++i) {
+		std::strcpy(registro.coachs[i], p_coachs[i].c_str());
 	}
 	
 	archivo.write(reinterpret_cast<char*>(&registro), sizeof(registroPlan));
 }
 
-///Implementacion del metodo que agrega un couch al arreglo que tiene el plan
-void plan::agregar_couch(std::string id_couch){
-	p_couchs.push_back(id_couch);
+///Implementacion del metodo que agrega un coach al arreglo que tiene el plan
+void plan::agregar_coach(std::string id_coach){
+	p_coachs.push_back(id_coach);
 }
 
 ///Implementacion del metodo para eliminar un ouch del arreglo
-void plan::eliminar_couch(std::string id_couch){
-	for(int i=0;i<p_couchs.size();i++){ 
-		if(id_couch == p_couchs[i]){
-			p_couchs.erase(p_couchs.begin()+i);
+void plan::eliminar_coach(std::string id_coach){
+	for(int i=0;i<p_coachs.size();i++){ 
+		if(id_coach == p_coachs[i]){
+			p_coachs.erase(p_coachs.begin()+i);
 		}
 	}
 }
 
-///Implementacion dle metodo para ver la cantidad de couchs del arreglo
-int plan::ver_cant_couchs() const{
-	return p_couchs.size();
+///Implementacion dle metodo para ver la cantidad de coachs del arreglo
+int plan::ver_cant_coachs() const{
+	return p_coachs.size();
 }
 
 
@@ -132,9 +132,9 @@ void plan::operator=(plan pl){
 	this->nombre = pl.ver_nombre_plan();
 	this->nombre_rutina_base = pl.ver_nombre_rutina();
 	this->precio = pl.ver_precio_plan();
-	this->p_couchs.erase((this->p_couchs).begin(),(this->p_couchs).end());
-	for(int i=0; i<pl.ver_couchs_plan().size() ;i++){
-		(this->p_couchs).push_back(pl.ver_couch_plan(i));
+	this->p_coachs.erase((this->p_coachs).begin(),(this->p_coachs).end());
+	for(int i=0; i<pl.ver_coachs_plan().size() ;i++){
+		(this->p_coachs).push_back(pl.ver_coach_plan(i));
 	}
 }
 

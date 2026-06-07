@@ -24,7 +24,7 @@ HijaSuscripciones::HijaSuscripciones(manage *aux, wxWindow *parent) : BaseSuscri
 void HijaSuscripciones::CargarFila(int pos_fila){
 	suscripcion sub = m_manage->obtenerSuscripcion(pos_fila);
 	cliente cl = m_manage->buscarClientesDNI(sub.ver_DNI_cliente());
-	couch ch = m_manage->buscarCouchsDNI(sub.ver_DNI_couch());
+	coach ch = m_manage->buscarcoachsDNI(sub.ver_DNI_coach());
 	std::string nom_plan = sub.ver_nombre_plan();
 	fecha fech_pago = sub.ver_fecha_pago();
 	fecha fech_venc = FechaVencimiento(fech_pago);

@@ -102,7 +102,7 @@ bool AnioBiciesto(fecha f1){
 bool ConfirmacionFecha(fecha f1){
 	int dias_feb = 28;
 	if(AnioBiciesto(f1)) dias_feb = 29;
-	if(f1.anio>0){
+	if(f1.anio<=0){
 		return false;
 	}
 	else if(f1.mes<1 or f1.mes>12){
@@ -183,7 +183,7 @@ bool operator<(fecha f1, fecha f2){
 	else if(f1.anio==f2.anio and f1.mes<f2.mes){
 		return true;
 	}
-	else if(f1.mes==f2.mes and f1.dia<f2.dia){
+	else if(f1.anio==f2.anio and f1.mes==f2.mes and f1.dia<f2.dia){
 		return true;
 	}
 	return false;

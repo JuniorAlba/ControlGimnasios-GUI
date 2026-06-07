@@ -23,15 +23,15 @@ HijaSuscripcionesAgregar::HijaSuscripcionesAgregar(manage *aux, wxWindow *parent
 void HijaSuscripcionesAgregar::ClickDesplegablePlanes( wxCommandEvent& event )  {
 	m_coachs->Clear();
 	int pos_plan = m_planes->GetSelection();
-	std::vector<couch> v_couchs = m_manage->CouchsInPlan(pos_plan);
-	for(int i=0;i<v_couchs.size();i++){
-		m_coachs->Append(std_to_wx(v_couchs[i].ver_nombre() + " " + v_couchs[i].ver_apellido() + " " + v_couchs[i].ver_DNI()));
+	std::vector<coach> v_coachs = m_manage->coachsInPlan(pos_plan);
+	for(int i=0;i<v_coachs.size();i++){
+		m_coachs->Append(std_to_wx(v_coachs[i].ver_nombre() + " " + v_coachs[i].ver_apellido() + " " + v_coachs[i].ver_DNI()));
 	}
 }
 
 /**
 * Implementacion del evento de click en el boton aceptar.
-* Apartir de el DNI del cliente en el cuadro de texto, el DNI del couch
+* Apartir de el DNI del cliente en el cuadro de texto, el DNI del coach
 * Obtenido del desplegable y el nombre del plan que esta en el desplegable de 
 * planes, realiza una suscripcion con el conjunto de datos
 *

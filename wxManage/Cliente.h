@@ -4,7 +4,7 @@
 * clase cliente
 *
 * 
-* Este archivo define la clase couch, las funciones auxiliares para
+* Este archivo define la clase coach, las funciones auxiliares para
 * compararlas y el struct de registro para poder guardar y leer
 * en archivo binarios
 **/

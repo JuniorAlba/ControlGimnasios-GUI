@@ -18,7 +18,7 @@ protected:
 	/// Evento para el click en boton de clientes
 	void ClickClientes( wxCommandEvent& event )  override;
 	/// Evento para el click en boton de coachs
-	void ClickCouchs( wxCommandEvent& event )  override;
+	void ClickCoachs( wxCommandEvent& event )  override;
 	/// Evento para el click en boton de planes
 	void ClickPlanes( wxCommandEvent& event )  override;
 	/// Evento para el click en boton de suscripciones
